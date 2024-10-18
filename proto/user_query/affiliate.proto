@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package user_query;
+
+message AffiliateRequest {
+  string user_id = 1;
+}
+
+message AffiliateData {
+  float total_amount = 1;
+  float withdrawn_amount = 2;
+  uint32 count_referrals = 3;
+  float rate = 4;
+  string invite_code = 5;
+}
+
+enum RefuseReason {
+  BAD_USER_ID = 0;
+}
+
+message AffiliateResponse {
+  oneof result {
+    AffiliateData data = 1;
+    RefuseReason refuse_reason = 2;
+  }
+}
+
+service Affiliate {
+  rpc query(AffiliateRequest) returns (AffiliateResponse);
+}

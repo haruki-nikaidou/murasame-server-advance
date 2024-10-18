@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package user_auth;
+
+import "proto/user_auth/shared_mfa.proto";
+
+service CheckMFA {
+  rpc check(MfaRequest) returns (MfaCheckResponse);
+}

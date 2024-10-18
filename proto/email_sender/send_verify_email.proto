@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package email;
+
+message SendVerifyEmailRequest {
+  string email = 1;
+  VerifyReason reason = 2;
+}
+
+enum VerifyReason {
+  RESET_PASSWORD = 0;
+  UPDATE_EMAIL_ACCOUNT = 1;
+  UPDATE_OTHER_ACCOUNT = 2;
+  MFA_CONFIG = 3;
+}
+
+enum RefuseReason {
+  EMAIL_CONFLICT = 0;
+  ILLEGAL_EMAIL = 1;
+  BANNED_EMAIL = 2;
+}
+
+message SendVerifyEmailResponse {
+  oneof result {
+    string verify_code = 1;
+    RefuseReason refuse_reason = 2;
+  }
+}
+
+service EmailSender {
+  rpc send_verify_email(SendVerifyEmailRequest) returns (SendVerifyEmailResponse);
+}

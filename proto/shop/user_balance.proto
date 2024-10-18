@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package shop;
+
+message UserBalance {
+  string user_id = 1;
+  float available_balance = 2;
+  float locked_balance = 3;
+}

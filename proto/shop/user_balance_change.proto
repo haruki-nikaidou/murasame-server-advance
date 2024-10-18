@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package shop;
+
+import "google/protobuf/timestamp.proto";
+
+enum UserBalanceChangeType {
+  DEPOSIT = 0;
+  WITHDRAW = 1;
+  REFUND = 2;
+  CHARGEBACK  = 3;
+  LOCK = 4;
+  UNLOCK = 5;
+}
+
+message UserBalanceChange {
+  int64 change_id = 1;
+  string user_id = 2;
+  UserBalanceChangeType change_type = 3;
+  float amount = 4;
+  google.protobuf.Timestamp created_at = 5;
+  string reason = 6;
+}

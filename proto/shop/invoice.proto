@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package shop;
+
+import "google/protobuf/timestamp.proto";
+
+message Invoice {
+  string invoice_id = 1;
+  string order_id = 2;
+  string user_id = 3;
+  float total_price = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+  bool will_auto_expire = 7;
+}

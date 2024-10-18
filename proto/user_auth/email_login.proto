@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package user_auth;
+
+message EmailLoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+enum RefuseReason {
+  INVALID_TOKEN = 0;
+  ACCOUNT_IS_BANNED = 1;
+  NOT_VERIFIED = 2;
+}
+
+message EmailLoginResponse {
+  oneof result {
+    string jwt_token = 1;
+    RefuseReason refuse_reason = 2;
+  }
+}
+
+service EmailLogin {
+  rpc login(EmailLoginRequest) returns (EmailLoginResponse);
+}

@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package shop;
+
+import "proto/shop/cart.proto";
+import "google/protobuf/timestamp.proto";
+
+enum OrderStatus {
+  PENDING = 0;
+  PAID = 1;
+  COMPLETED = 2;
+  CANCELED = 3;
+}
+
+message Order {
+  string order_id = 1;
+  repeated CartItem content = 2;
+  OrderStatus status = 3;
+  string user_id = 4;
+  float total_price = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  bool is_deleted = 8;
+  bool will_auto_expire = 9;
+}

@@ -3,5 +3,9 @@
 version = 3
 
 [[package]]
+name = "auth_core"
+version = "0.1.0"
+
+[[package]]
 name = "mail_sender"
 version = "0.1.0"

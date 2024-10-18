@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package shop;
+
+message CartItem {
+  int32 product_id = 1;
+  string variant = 2;
+  uint32 quantity = 3;
+}

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package user_auth;
+
+message UpdateEmailRequest {
+  string email = 1;
+  string user_id = 2;
+  string verify_code = 3;
+}
+
+enum UpdateResult {
+  SUCCESS = 0;
+  INVALID_EMAIL = 1;
+  BAD_USER_ID = 2;
+  INVALID_VERIFY_CODE = 3;
+  EMAIL_CONFLICT = 4;
+  NEED_VERIFY = 5;
+}
+
+message UpdateEmailResponse {
+  UpdateResult result = 1;
+}
+
+service UpdateEmail {
+  rpc update(UpdateEmailRequest) returns (UpdateEmailResponse);
+}

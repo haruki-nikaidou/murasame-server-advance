@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package user_auth;
+
+message DeleteAccountRequest {
+  string user_id = 1;
+}
+
+enum Result {
+  SUCCESS = 0;
+  BAD_USER_ID = 1;
+}
+
+message DeleteAccountResponse {
+  Result result = 1;
+}
+
+service DeleteAccount {
+  rpc delete(DeleteAccountRequest) returns (DeleteAccountResponse);
+}

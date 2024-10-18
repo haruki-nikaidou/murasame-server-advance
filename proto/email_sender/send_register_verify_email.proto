@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package email;
+
+message RegisterVerifyEmailRequest {
+  string email = 1;
+}
+
+enum RefuseReason {
+  EMAIL_CONFLICT = 0;
+  ILLEGAL_EMAIL = 1;
+  BANNED_EMAIL = 2;
+}
+
+message RegisterVerifyEmailResponse {
+  oneof result {
+    string verify_code = 1;
+    RefuseReason refuse_reason = 2;
+  }
+}
+
+service EmailSender {
+  rpc send_register_verify_email(RegisterVerifyEmailRequest) returns (RegisterVerifyEmailResponse);
+}
